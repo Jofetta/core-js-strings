@@ -19,8 +19,12 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(value) {
+  // throw new Error('Not implemented');
+  if (typeof value !== 'string') {
+    return 0;
+  }
+  return value.length;
 }
 
 /**
@@ -39,6 +43,10 @@ function getStringLength(/* value */) {
  */
 function isString(/* value */) {
   throw new Error('Not implemented');
+  // if (typeof value !== 'string') {
+  //   return false;
+  // }
+  // return true;
 }
 
 /**
@@ -53,8 +61,9 @@ function isString(/* value */) {
  *   concatenateStrings('aa', '') => 'aa'.
  *   concatenateStrings('', 'bb') => 'bb'
  */
-function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function concatenateStrings(value1, value2) {
+  // throw new Error('Not implemented');
+  return value1 + value2;
 }
 
 /**
@@ -68,8 +77,12 @@ function concatenateStrings(/* value1, value2 */) {
  *   getFirstChar('cat') => 'c'
  *   getFirstChar('') => ''
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(value) {
+  // throw new Error('Not implemented');
+  if (value.length === 0) {
+    return '';
+  }
+  return value[0];
 }
 
 /**
@@ -130,8 +143,19 @@ function removeTrailingWhitespaces(/* value */) {
  *   repeatString('', 3) => ''
  *   repeatString('abc', -2) => ''
  */
-function repeatString(/* str, times */) {
-  throw new Error('Not implemented');
+function repeatString(str, times) {
+  // throw new Error('Not implemented');
+  if (times <= 0) {
+    return '';
+  }
+  if (times === 1) {
+    return str;
+  }
+  let result = '';
+  for (let i = 1; i <= times; i += 1) {
+    result += str;
+  }
+  return result;
 }
 
 /**
@@ -239,8 +263,13 @@ function formatTime(/* minutes, seconds */) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  // throw new Error('Not implemented');
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    result += str[str.length - i - 1];
+  }
+  return result;
 }
 
 /**
