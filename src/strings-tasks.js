@@ -177,7 +177,11 @@ function repeatString(str, times) {
  */
 function removeFirstOccurrences(str, value) {
   // throw new Error('Not implemented');
-  return str.replace(value, '');
+  if (!str.includes(value)) {
+    return str;
+  }
+  const index = str.indexOf(value);
+  return str.slice(0, index) + str.slice(index + value.length);
 }
 
 /**
@@ -192,8 +196,13 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  // throw new Error('Not implemented');
+  if (!str.includes(value)) {
+    return str;
+  }
+  const lastIndex = str.lastIndexOf(value);
+  return str.slice(0, lastIndex) + str.slice(lastIndex + value.length);
 }
 
 /**
@@ -208,8 +217,16 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  // throw new Error('Not implemented');
+  if (!str || str.length === 0) {
+    return 0;
+  }
+  let result = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    result += str.charCodeAt(i);
+  }
+  return result;
 }
 
 /**
@@ -239,8 +256,9 @@ function startsWith(str, substr) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  // throw new Error('Not implemented');
+  return str.endsWith(substr);
 }
 
 /**
@@ -256,8 +274,12 @@ function endsWith(/* str, substr */) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  // throw new Error('Not implemented');
+  return minutes
+    .toString()
+    .padStart(2, '0')
+    .concat(':', seconds.toString().padStart(2, '0'));
 }
 
 /**
@@ -290,8 +312,9 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  // throw new Error('Not implemented');
+  return str.split('').sort().join('');
 }
 
 /**
@@ -306,8 +329,9 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  // throw new Error('Not implemented');
+  return str.includes(substring);
 }
 
 /**
@@ -324,8 +348,19 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  // throw new Error('Not implemented');
+  const vowels = 'aeiouyAEIOUY';
+  let count = 0;
+  if (!str || str.length === 0) {
+    return 0;
+  }
+  for (let i = 0; i < str.length; i += 1) {
+    if (vowels.includes(str[i])) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 /**
@@ -341,8 +376,21 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  // throw new Error('Not implemented');
+  const forward = str
+    .replaceAll(' ', '')
+    .replaceAll(',', '')
+    .replaceAll('?', '')
+    .replaceAll('!', '')
+    .toLowerCase();
+
+  let backwards = '';
+  for (let i = 0; i < forward.length; i += 1) {
+    backwards += forward[forward.length - i - 1];
+  }
+
+  return forward === backwards;
 }
 
 /**
